@@ -1,0 +1,238 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CV Marshall Cámara - Full Stack & Data</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --primary: #2d3436;
+            --accent: #0984e3;
+            --text-main: #2d3436;
+            --text-light: #636e72;
+            --bg-page: #f5f6fa;
+        }
+
+        * { margin: 0; padding: 0; box-sizing: border-box; }
+
+        body {
+            background-color: var(--bg-page);
+            font-family: 'Inter', sans-serif;
+            color: var(--text-main);
+            line-height: 1.4;
+            display: flex;
+            justify-content: center;
+            padding: 40px 0;
+        }
+
+        /* Botón Volver Profesional */
+        .btn-container {
+            position: fixed;
+            top: 20px;
+            left: 20px;
+            z-index: 1000;
+        }
+
+        .btn-back {
+            display: flex;
+            align-items: center;
+            gap: 8px;
+            padding: 10px 18px;
+            background-color: white;
+            color: var(--primary);
+            text-decoration: none;
+            font-size: 14px;
+            font-weight: 600;
+            border-radius: 8px;
+            border: 1px solid #dfe6e9;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            transition: all 0.3s ease;
+        }
+
+        .btn-back:hover {
+            background-color: var(--accent);
+            color: white;
+            border-color: var(--accent);
+            transform: translateY(-2px);
+            box-shadow: 0 6px 12px rgba(9, 132, 227, 0.2);
+        }
+
+        .btn-back svg {
+            width: 18px;
+            height: 18px;
+            fill: currentColor;
+        }
+
+        /* Ocultar botón al imprimir para que no salga en el PDF */
+        @media print {
+            .btn-container { display: none; }
+        }
+
+        /* Simulación de Hoja A4 */
+        .a4-page {
+            width: 210mm;
+            height: 297mm;
+            background: white;
+            box-shadow: 0 0 20px rgba(0,0,0,0.1);
+            padding: 15mm;
+            display: grid;
+            grid-template-columns: 1fr 2fr;
+            gap: 30px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        /* Columna Izquierda (Sidebar) */
+        .sidebar {
+            background-color: #f8f9fa;
+            padding: 20px;
+            border-radius: 8px;
+            height: 100%;
+        }
+
+        h1 { font-size: 24px; font-weight: 700; text-transform: uppercase; margin-bottom: 5px; color: var(--primary); }
+        .subtitle { font-size: 14px; font-weight: 600; color: var(--accent); margin-bottom: 25px; }
+
+        .contact-item { font-size: 11px; margin-bottom: 8px; color: var(--text-light); word-break: break-all; }
+        .contact-item b { color: var(--primary); display: block; }
+
+        h3 { font-size: 14px; text-transform: uppercase; border-bottom: 2px solid var(--accent); margin-bottom: 12px; margin-top: 25px; padding-bottom: 4px; }
+
+        .skill-tag { 
+            display: inline-block; 
+            background: #dfe6e9; 
+            padding: 4px 8px; 
+            border-radius: 4px; 
+            font-size: 11px; 
+            margin: 2px; 
+            font-weight: 500;
+        }
+
+        /* Columna Derecha (Contenido Principal) */
+        .main-content { padding-top: 10px; }
+
+        .section-title { font-size: 16px; font-weight: 700; color: var(--primary); margin-bottom: 15px; display: flex; align-items: center; }
+        .section-title::after { content: ""; flex: 1; height: 1px; background: #eee; margin-left: 15px; }
+
+        p.profile-text { font-size: 12px; color: var(--text-light); text-align: justify; margin-bottom: 20px; }
+
+        .project-card { margin-bottom: 18px; }
+        .project-header { display: flex; justify-content: space-between; align-items: baseline; }
+        .project-title { font-size: 13px; font-weight: 700; color: var(--primary); }
+        .project-tech { font-size: 10px; color: var(--accent); font-weight: 600; }
+        .project-desc { font-size: 11.5px; color: var(--text-light); margin-top: 4px; }
+        .project-desc li { margin-left: 15px; margin-bottom: 2px; }
+
+        .education-item { margin-bottom: 12px; }
+        .edu-title { font-size: 13px; font-weight: 700; }
+        .edu-inst { font-size: 12px; color: var(--accent); }
+        .edu-date { font-size: 11px; color: var(--text-light); float: right; }
+
+        @media print {
+            body { background: none; padding: 0; }
+            .a4-page { box-shadow: none; margin: 0; }
+        }
+    </style>
+</head>
+<body>
+    <div class="btn-container">
+        <a href="index.html" class="btn-back">
+            <svg viewBox="0 0 24 24"><path d="M20 11H7.83l5.59-5.59L12 4l-8 8 8 8 1.41-1.41L7.83 13H20v-2z"/></svg>
+            Volver
+        </a>
+    </div>
+    <div class="a4-page">
+        <div class="sidebar">
+            <h1>Marshall Cámara</h1>
+            <p class="subtitle">Full Stack & Data Analyst</p>
+
+            <h3>Contacto</h3>
+            <div class="contact-item"><b>Ubicación:</b> Argentina</div>
+            <div class="contact-item"><b>Email:</b> marshallcamara777@gmail.com</div>
+            <div class="contact-item"><b>LinkedIn:</b> linkedin.com/in/marshallcámara</div>
+            <div class="contact-item"><b>GitHub:</b> github.com/Marshall-lc</div>
+
+            <h3>Skills Técnicos</h3>
+            <p style="font-size: 12px; font-weight: 600; margin: 10px 0 5px;">Lenguajes</p>
+            <span class="skill-tag">Python</span> <span class="skill-tag">JavaScript</span> <span class="skill-tag">SQL</span>
+            
+            <p style="font-size: 12px; font-weight: 600; margin: 10px 0 5px;">Data & BI</p>
+            <span class="skill-tag">Power BI</span> <span class="skill-tag">DAX</span> <span class="skill-tag">Tableau</span> <span class="skill-tag">ETL</span>
+
+            <p style="font-size: 12px; font-weight: 600; margin: 10px 0 5px;">Bases de Datos</p>
+            <span class="skill-tag">MongoDB</span> <span class="skill-tag">MySQL</span>
+
+            <p style="font-size: 12px; font-weight: 600; margin: 10px 0 5px;">Herramientas</p>
+            <span class="skill-tag">Git</span> <span class="skill-tag">Linux</span> <span class="skill-tag">APIs REST</span> <span class="skill-tag">AI Tools</span>
+        </div>
+
+        <div class="main-content">
+            <div class="section-title">PERFIL PROFESIONAL</div>
+            <p class="profile-text">
+                Especialista orientado a resultados con capacidad para transformar datos complejos en soluciones visuales y escalables. Experiencia integrando desarrollo Full Stack con Business Intelligence para optimizar la toma de decisiones. Experto en automatización de procesos y modelado de datos.
+            </p>
+
+            <div class="section-title">PROYECTOS DESTACADOS</div>
+            
+            <div class="project-card">
+                <div class="project-header">
+                    <span class="project-title">Sistema de Análisis de Datos</span>
+                    <span class="project-tech">Python · SQL · Power BI</span>
+                </div>
+                <ul class="project-desc">
+                    <li>Desarrollo de dashboards interactivos con métricas clave en tiempo real.</li>
+                    <li>Modelado de datos complejos mediante DAX para identificar patrones críticos.</li>
+                </ul>
+            </div>
+
+            <div class="project-card">
+                <div class="project-header">
+                    <span class="project-title">Aplicación Web Gestión de Usuarios</span>
+                    <span class="project-tech">MERN Stack · APIs REST</span>
+                </div>
+                <ul class="project-desc">
+                    <li>App con autenticación robusta y backend escalable en MongoDB.</li>
+                    <li>Frontend responsive diseñado bajo principios de usabilidad (UX).</li>
+                </ul>
+            </div>
+
+            <div class="project-card">
+                <div class="project-header">
+                    <span class="project-title">Moderador Automático con IA</span>
+                    <span class="project-tech">Python · YouTube API · NLP</span>
+                </div>
+                <ul class="project-desc">
+                    <li>Sistema de moderación automática de comentarios mediante procesamiento de lenguaje.</li>
+                    <li>Integración exitosa con APIs externas para automatización de respuestas.</li>
+                </ul>
+            </div>
+
+            <div class="project-card">
+                <div class="project-header">
+                    <span class="project-title">Landing Page de Alta Conversión</span>
+                    <span class="project-tech">JS · HTML · CSS</span>
+                </div>
+                <p class="project-desc">Optimización de experiencia de usuario enfocada en ventas y performance.</p>
+            </div>
+
+            <div class="section-title">FORMACIÓN ACADÉMICA</div>
+            <div class="education-item">
+                <span class="edu-date">En curso</span>
+                <div class="edu-title">Tecnicatura Universitaria en Programación</div>
+                <div class="edu-inst">UTN - Facultad Regional Avellaneda</div>
+            </div>
+
+            <div class="section-title">CERTIFICACIONES</div>
+            <div class="education-item">
+                <div class="edu-title" style="font-size: 11px;">• Analítica Avanzada con Power BI (Udemy)</div>
+                <div class="edu-title" style="font-size: 11px;">• Tableau: Análisis y Visualización de Datos (Udemy)</div>
+                <div class="edu-title" style="font-size: 11px;">• Power BI: Gráficos y Visualización (Udemy)</div>
+            </div>
+        </div>
+    </div>
+
+</body>
+</html>

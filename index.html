@@ -1,0 +1,810 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Marshall Cámara - Portafolio</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
+    
+    <style>
+        /* --- VARIABLES Y RESET (MODO OSCURO) --- */
+        :root {
+            --bg-body: #121212;
+            --bg-card: #1e1e1e;
+            --bg-card-hover: #252525;
+            --text-main: #e0e0e0;
+            --text-muted: #a0a0a0;
+            --accent: #8b5cf6; /* Violeta vibrante */
+            --accent-glow: rgba(139, 92, 246, 0.15);
+            --accent-hover: #7c3aed;
+            --border: #333333;
+            --transition: all 0.3s ease;
+        }
+
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Inter', sans-serif;
+            background-color: var(--bg-body);
+            color: var(--text-main);
+            line-height: 1.6;
+            scroll-behavior: smooth;
+        }
+
+        a { text-decoration: none; color: inherit; }
+        ul { list-style: none; }
+
+        /* --- HEADER & NAV --- */
+        header {
+            position: fixed;
+            top: 0;
+            width: 100%;
+            background-color: rgba(18, 18, 18, 0.9);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid var(--border);
+            z-index: 1000;
+            padding: 1rem 5%;
+        }
+
+        nav {
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .logo {
+            font-weight: 700;
+            font-size: 1.5rem;
+            color: var(--text-main);
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            font-size: 0.9rem;
+            font-weight: 500;
+            color: var(--text-muted);
+            transition: var(--transition);
+            cursor: pointer;
+        }
+
+        .nav-links a:hover, .nav-links a.active {
+            color: var(--accent);
+        }
+
+        /* --- LAYOUT GENERAL --- */
+        section {
+            padding: 5rem 1rem;
+            max-width: 1000px;
+            margin: 0 auto;
+        }
+
+        .section-title {
+            text-align: center;
+            font-size: 2.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+            color: var(--text-main);
+        }
+
+        .section-subtitle {
+            text-align: center;
+            color: var(--text-muted);
+            margin-bottom: 3rem;
+            font-size: 1rem;
+        }
+
+        /* --- HERO SECTION --- */
+        #inicio {
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+            padding-top: 80px;
+        }
+
+        .profile-img {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            object-fit: cover;
+            border: 3px solid var(--accent);
+            margin-bottom: 1.5rem;
+            box-shadow: 0 0 20px var(--accent-glow);
+        }
+
+        .hero-title {
+            font-size: 3.5rem;
+            font-weight: 700;
+            margin-bottom: 0.5rem;
+        }
+
+        .hero-age {
+            color: var(--text-muted);
+            margin-bottom: 1.5rem;
+        }
+
+        .badges {
+            display: flex;
+            gap: 1rem;
+            justify-content: center;
+            margin-bottom: 2rem;
+            flex-wrap: wrap;
+        }
+
+        .badge {
+            background-color: var(--accent-glow);
+            color: var(--accent);
+            padding: 0.5rem 1rem;
+            border-radius: 50px;
+            font-size: 0.9rem;
+            font-weight: 600;
+            border: 1px solid rgba(139, 92, 246, 0.3);
+        }
+
+        .hero-desc {
+            max-width: 600px;
+            color: var(--text-muted);
+            margin-bottom: 2rem;
+        }
+
+        .btn-primary {
+            background-color: var(--accent);
+            color: white;
+            padding: 0.8rem 2rem;
+            border-radius: 50px;
+            font-weight: 600;
+            display: inline-flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: var(--transition);
+        }
+
+        .btn-primary:hover {
+            background-color: var(--accent-hover);
+            transform: translateY(-2px);
+            box-shadow: 0 4px 15px var(--accent-glow);
+        }
+
+        
+
+        /* --- PROYECTOS --- */
+        .project-card {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border);
+            border-radius: 12px;
+            overflow: hidden;
+            display: flex;
+            margin-bottom: 2rem;
+            transition: var(--transition);
+        }
+
+        .project-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        .project-img {
+            width: 45%;
+            object-fit: cover;
+            min-height: 250px;
+        }
+
+        .project-content {
+            padding: 2rem;
+            width: 55%;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+        }
+
+        .project-title {
+            font-size: 1.5rem;
+            margin-bottom: 1rem;
+        }
+
+        .project-desc {
+            color: var(--text-muted);
+            font-size: 0.95rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .tech-stack {
+            display: flex;
+            flex-wrap: wrap;
+            gap: 0.5rem;
+            margin-bottom: 1.5rem;
+        }
+
+        .tech-tag {
+            background-color: #2a2a2a;
+            color: var(--text-main);
+            padding: 0.3rem 0.8rem;
+            border-radius: 6px;
+            font-size: 0.8rem;
+        }
+
+        .project-links {
+            display: flex;
+            gap: 1rem;
+        }
+
+        .btn-outline {
+            border: 1px solid var(--border);
+            background: transparent;
+            color: var(--text-main);
+            padding: 0.5rem 1rem;
+            border-radius: 6px;
+            font-size: 0.9rem;
+            display: flex;
+            align-items: center;
+            gap: 0.5rem;
+            transition: var(--transition);
+        }
+
+        .btn-outline:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+        }
+
+        
+
+        /* --- SKILLS --- */
+        .skills-grid {
+            display: flex;
+            flex-wrap: wrap;
+            justify-content: center;
+            gap: 1rem;
+        }
+
+        .skill-item {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border);
+            padding: 0.8rem 1.5rem;
+            border-radius: 50px;
+            font-weight: 500;
+            transition: var(--transition);
+        }
+
+        .skill-item:hover {
+            border-color: var(--accent);
+            color: var(--accent);
+            background-color: var(--accent-glow);
+        }
+
+        /* --- FORMACIÓN --- */
+        .edu-card {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border);
+            padding: 2rem;
+            border-radius: 12px;
+            display: flex;
+            align-items: flex-start;
+            gap: 1.5rem;
+            max-width: 800px;
+            margin: 0 auto 2rem auto; /* Agregado margen inferior */
+        }
+
+        .edu-icon {
+            background-color: var(--accent-glow);
+            color: var(--accent);
+            width: 60px;
+            height: 60px;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 12px;
+            font-size: 1.5rem;
+            flex-shrink: 0;
+        }
+
+        .edu-info h3 {
+            margin-bottom: 0.5rem;
+            font-size: 1.25rem;
+        }
+
+        .edu-school {
+            color: var(--accent);
+            font-weight: 600;
+            font-size: 0.9rem;
+            margin-bottom: 1rem;
+            display: block;
+        }
+
+        .status-badge {
+            background-color: var(--accent-glow);
+            color: var(--accent);
+            padding: 0.2rem 0.8rem;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            display: inline-block;
+            margin-top: 1rem;
+            margin-right: 1rem;
+        }
+
+        /* --- BOTÓN VER CERTIFICADO --- */
+        .btn-certificate {
+            background-color: transparent;
+            border: 1px solid var(--accent);
+            color: var(--accent);
+            padding: 0.4rem 1rem;
+            border-radius: 50px;
+            font-size: 0.8rem;
+            cursor: pointer;
+            transition: var(--transition);
+            display: inline-block;
+            margin-top: 1rem;
+        }
+
+        .btn-certificate:hover {
+            background-color: var(--accent);
+            color: white;
+        }
+
+        /* --- MODAL CERTIFICADO --- */
+        .certificate-modal {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background-color: rgba(0, 0, 0, 0.8);
+            backdrop-filter: blur(10px);
+            z-index: 2000;
+            justify-content: center;
+            align-items: center;
+            padding: 2rem;
+        }
+
+        .certificate-modal.active {
+            display: flex;
+        }
+
+        .certificate-container {
+            position: relative;
+            max-width: 90%;
+            max-height: 90%;
+            background-color: var(--bg-card);
+            border-radius: 12px;
+            overflow: hidden;
+            box-shadow: 0 20px 60px rgba(0, 0, 0, 0.5);
+        }
+
+        .certificate-close {
+            position: absolute;
+            top: 1rem;
+            right: 1rem;
+            background-color: rgba(0, 0, 0, 0.7);
+            color: white;
+            width: 40px;
+            height: 40px;
+            border-radius: 50%;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            font-size: 1.5rem;
+            transition: var(--transition);
+            z-index: 10;
+        }
+
+        .certificate-close:hover {
+            background-color: var(--accent);
+            transform: rotate(90deg);
+        }
+
+        .certificate-img {
+            width: 100%;
+            height: auto;
+            display: block;
+        }
+
+        /* --- CONTACTO --- */
+        .contact-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 2rem;
+            margin-top: 2rem;
+        }
+
+        .contact-card {
+            background-color: var(--bg-card);
+            border: 1px solid var(--border);
+            padding: 2rem;
+            border-radius: 12px;
+            text-align: center;
+            transition: var(--transition);
+            cursor: pointer;
+        }
+
+        .contact-card:hover {
+            transform: translateY(-5px);
+            border-color: var(--accent);
+        }
+
+        .contact-icon {
+            font-size: 2rem;
+            color: var(--accent);
+            margin-bottom: 1rem;
+        }
+
+        .contact-card h3 {
+            margin-bottom: 0.5rem;
+        }
+
+        .contact-card p, .contact-card a {
+            color: var(--text-muted);
+            font-size: 0.9rem;
+        }
+
+        /* --- FOOTER --- */
+        footer {
+            text-align: center;
+            padding: 2rem;
+            color: var(--text-muted);
+            font-size: 0.85rem;
+            border-top: 1px solid var(--border);
+            margin-top: 4rem;
+        }
+
+        /* --- RESPONSIVE --- */
+        @media (max-width: 768px) {
+            .nav-links { display: none; } /* En una versión real agregarías menú hamburguesa */
+            .project-card { flex-direction: column; }
+            .project-img { width: 100%; height: 200px; }
+            .project-content { width: 100%; }
+            .hero-title { font-size: 2.5rem; }
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <nav>
+            <div class="logo">MC</div>
+            <ul class="nav-links">
+                <li><a href="#inicio" class="nav-link active">Inicio</a></li>
+                <li><a href="#proyectos" class="nav-link">Proyectos</a></li>
+                <li><a href="#skills" class="nav-link">Skills</a></li>
+                <li><a href="#formacion" class="nav-link">Formación</a></li>
+                <li><a href="#contacto" class="nav-link">Contacto</a></li>
+            </ul>
+        </nav>
+    </header>
+
+    <main>
+        <section id="inicio">
+            <img src="https://ui-avatars.com/api/?name=Marshall+Camara&background=2d2d2d&color=8b5cf6&size=150" alt="Marshall Cámara" class="profile-img">
+            
+            <h1 class="hero-title">Marshall Cámara</h1>
+
+            <div class="badges">
+                <span class="badge"><i class="fas fa-database"></i> Analista de Datos</span>
+                <span class="badge"><i class="fas fa-code"></i> Desarrollador</span>
+            </div>
+
+            <p class="hero-desc">
+                Apasionado por transformar datos en decisiones estratégicas. Con experiencia en visualización, análisis predictivo y desarrollo web, busco crear soluciones que generen impacto.
+            </p>
+
+            <a href="cv.html" class="btn-primary">
+                Ver Cv <i class="fas fa-arrow-down"></i>
+            </a>
+        </section>
+
+        <section id="proyectos">
+            <h2 class="section-title">Proyectos Destacados</h2>
+            <p class="section-subtitle">Algunos de mis trabajos recientes</p>
+
+            <div class="project-card">
+                <img src="pelu.png" alt="App Web Full Stack" class="project-img">
+                <div class="project-content">
+                    <h3 class="project-title">Aplicación Web Full Stack</h3>
+                    <p class="project-desc">Aplicación web completa con backend robusto y frontend responsive. Gestión de Turnos + pagos api mercado libre.</p>
+                    <div class="tech-stack">
+                        <span class="tech-tag">JavaScript</span>
+                        <span class="tech-tag">HTML</span>
+                        <span class="tech-tag">CSS</span>
+                        <span class="tech-tag">APIs</span>
+                        <span class="tech-tag">MongoDB</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="https://marshallhc.github.io/Peluquer-a_proyect/" class="btn-outline"><i class="fas fa-external-link-alt"></i> Ver proyecto</a>
+                        <a href="https://github.com/Marshallhc/Peluquer-a_proyect" class="btn-outline"><i class="fab fa-github"></i> Ver código</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <img src="proyecto_ninja.jpeg" alt="Landing" class="project-img">
+                <div class="project-content">
+                    <h3 class="project-title">Landing</h3>
+                    <p class="project-desc">Web para venta de un sólo producto, incluye presentación, galería y modo de contactar</p>
+                    <div class="tech-stack">
+                        <span class="tech-tag">HTML</span>
+                        <span class="tech-tag">CSS</span>
+                        <span class="tech-tag">JavaScript</span>
+                        <span class="tech-tag">Lovable</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="https://marshall-lc.github.io/kawasaki_proyect/" class="btn-outline"><i class="fas fa-external-link-alt"></i> Ver proyecto</a>
+                        <a href="https://github.com/Marshall-lc/kawasaki_proyect" class="btn-outline"><i class="fab fa-github"></i> Ver código</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <img src="py.png" alt="Landing" class="project-img">
+                <div class="project-content">
+                    <h3 class="project-title">Moderador Youtube</h3>
+                    <p class="project-desc">Moderador automático, identifica mensajes y devuelve un mensaje.</p>
+                    <div class="tech-stack">
+                        <span class="tech-tag">Python</span>
+                        <span class="tech-tag">APIs</span>
+                        <span class="tech-tag">Google Claude</span>
+                        <span class="tech-tag">IA</span>
+                        <span class="tech-tag">JSON</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="https://github.com/Marshallhc/moderador_YTB" class="btn-outline"><i class="fab fa-github"></i> Ver código</a>
+                    </div>
+                </div>
+            </div>
+
+            <div class="project-card">
+                <img src="https://placehold.co/600x400/2d2d2d/8b5cf6?text=En+Curso" alt="Sistema de Análisis" class="project-img">
+                <div class="project-content">
+                    <h3 class="project-title">Sistema de Análisis de Datos</h3>
+                    <p class="project-desc">Plataforma de análisis de datos en tiempo real con visualizaciones interactivas usando Power BI y SQL.</p>
+                    <div class="tech-stack">
+                        <span class="tech-tag">Python</span>
+                        <span class="tech-tag">SQL</span>
+                        <span class="tech-tag">Power BI</span>
+                        <span class="tech-tag">DAX</span>
+                    </div>
+                    <div class="project-links">
+                        <a href="#" class="btn-outline"><i class="fas fa-external-link-alt"></i> Coming Soon</a>
+                        <a href="#" class="btn-outline"><i class="fab fa-github"></i> Coming Soon</a>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <section id="skills">
+            <h2 class="section-title">Skills & Tecnologías</h2>
+            
+            <div class="skills-grid">
+                <div class="skill-item">Python</div>
+                <div class="skill-item">MongoDB</div>
+                <div class="skill-item">MySQL</div>
+                <div class="skill-item">SQL</div>
+                <div class="skill-item">Power BI</div>
+                <div class="skill-item">DAX</div>
+                <div class="skill-item">Tableau</div>
+                <div class="skill-item">HTML</div>
+                <div class="skill-item">CSS</div>
+                <div class="skill-item">JavaScript</div>
+                <div class="skill-item">Git</div>
+                <div class="skill-item">GitHub</div>
+                <div class="skill-item">Linux</div>
+                <div class="skill-item">JSON</div>
+                <div class="skill-item">APIs</div>
+                <div class="skill-item">Máquinas virtuales</div>
+                <div class="skill-item">IA</div>
+                <div class="skill-item">Automatización</div>
+            </div>
+        </section>
+
+        <section id="formacion">
+            <h2 class="section-title">Formación Académica</h2>
+
+            <div class="edu-card">
+                <div class="edu-icon">
+                    <i class="fas fa-book-open"></i>
+                </div>
+                <div class="edu-info">
+                    <h3>Tecnicatura Universitaria en Programación</h3>
+                    <span class="edu-school">Universidad Tecnológica Nacional - Facultad Regional Avellaneda (UTN FRA)</span>
+                    <p style="color: var(--text-muted); font-size: 0.95rem;">
+                        Formación integral en programación, análisis de sistemas y desarrollo de software. Desarrollo de competencias técnicas y profesionales en el campo de la informática y la programación de computadoras.
+                    </p>
+                    <span class="status-badge">En curso</span>
+                </div>
+            </div>
+
+            <div class="edu-card">
+                <div class="edu-icon">
+                    <i class="fas fa-book-open"></i>
+                </div>
+                <div class="edu-info">
+                    <h3>Power BI: Gráficos y visualización de datos</h3>
+                    <span class="edu-school">Udemy</span>
+                    <p style="color: var(--text-muted); font-size: 0.95rem;">
+                        Creación visualizaciones claras y profesionales en Power BI, desde gráficos básicos hasta técnicas avanzadas como mapas y forecasting. Desarrollé criterio para elegir el gráfico adecuado según el análisis. Fortalecí mi capacidad de comunicar datos de manera efectiva.    
+                    </p>
+                    <div>
+                        <span class="status-badge">Completado</span>
+                        <button class="btn-certificate" onclick="openCertificate('cert1')">Ver certificado</button>
+                    </div>
+                </div>
+            </div> 
+
+            <div class="edu-card">
+                <div class="edu-icon">
+                    <i class="fas fa-book-open"></i>
+                </div>
+                <div class="edu-info">
+                    <h3>Tableau: Análisis y Visualización de Datos</h3>
+                    <span class="edu-school">Udemy</span>
+                    <p style="color: var(--text-muted); font-size: 0.95rem;">
+                        Creación de dashboards interactivos y conectando múltiples fuentes de datos para analizar información en tiempo real. Desarrollé visualizaciones claras y efectivas, aplicando buenas prácticas de diseño, colores, filtros y cálculos avanzados. Fortalecí mi capacidad para presentar datos con impacto y transformar análisis complejos en insights accionables.
+                    </p>
+                    <div>
+                        <span class="status-badge">Completado</span>
+                        <button class="btn-certificate" onclick="openCertificate('cert2')">Ver certificado</button>
+                    </div>
+                </div>
+            </div>
+
+            <div class="edu-card">
+                <div class="edu-icon">
+                    <i class="fas fa-book-open"></i>
+                </div>
+                <div class="edu-info">
+                    <h3>Analítica avanzada con Power BI</h3>
+                    <span class="edu-school">Udemy</span>
+                    <p style="color: var(--text-muted); font-size: 0.95rem;">
+                        Aprendí técnicas de analítica avanzada en Power BI, incluyendo segmentación bivariada y multivariante, detección de anomalías y análisis de variaciones. Incorporé simulaciones "What If" y modelos predictivos para anticipar resultados y entender influenciadores clave. Mejoré mi capacidad para crear visualizaciones avanzadas y convertir análisis complejos en insights estratégicos.
+                    </p>
+                    <div>
+                        <span class="status-badge">Completado</span>
+                        <button class="btn-certificate" onclick="openCertificate('cert3')">Ver certificado</button>
+                    </div>
+                </div>
+            </div>
+
+        </section>
+
+        <section id="contacto">
+            <h2 class="section-title">Contacto</h2>
+
+            <div class="contact-grid">
+                <a href="mailto:[email protected]" class="contact-card">
+                    <div class="contact-icon"><i class="far fa-envelope"></i></div>
+                    <h3>Email</h3>
+                    <p>[email protected]</p>
+                </a>
+
+                <a href="https://www.linkedin.com/in/marshallc%C3%A1mara/" class="contact-card">
+                    <div class="contact-icon"><i class="fab fa-linkedin-in"></i></div>
+                    <h3>LinkedIn</h3>
+                    <p>Conecta conmigo aquí</p>
+                </a>
+
+                <a href="https://github.com/Marshall-lc" class="contact-card">
+                    <div class="contact-icon"><i class="fab fa-github"></i></div>
+                    <h3>GitHub</h3>
+                    <p>Ver mis proyectos</p>
+                </a>
+            </div>
+        </section>
+    </main>
+
+    <footer>
+        <p>&copy; 2025 Marshall Cámara. Todos los derechos reservados.</p>
+    </footer>
+
+    <!-- Modales para certificados -->
+    <div id="cert1" class="certificate-modal">
+        <div class="certificate-container">
+            <div class="certificate-close" onclick="closeCertificate('cert1')">×</div>
+            <img src="cert2.png" alt="Certificado Power BI" class="certificate-img">
+        </div>
+    </div>
+
+    <div id="cert2" class="certificate-modal">
+        <div class="certificate-container">
+            <div class="certificate-close" onclick="closeCertificate('cert2')">×</div>
+            <img src="cert3.png" alt="Certificado Tableau" class="certificate-img">
+        </div>
+    </div>
+
+    <div id="cert3" class="certificate-modal">
+        <div class="certificate-container">
+            <div class="certificate-close" onclick="closeCertificate('cert3')">×</div>
+            <img src="cert1.png" alt="Certificado Analítica Avanzada" class="certificate-img">
+        </div>
+    </div>
+
+    <script>
+        // Navegación suave con desplazamiento de 0.3 segundos
+        document.querySelectorAll('.nav-link').forEach(link => {
+            link.addEventListener('click', function(e) {
+                e.preventDefault();
+                const targetId = this.getAttribute('href');
+                const targetSection = document.querySelector(targetId);
+                
+                if (targetSection) {
+                    const offsetTop = targetSection.offsetTop - 80; // Ajuste por el header fijo
+                    
+                    window.scrollTo({
+                        top: offsetTop,
+                        behavior: 'smooth'
+                    });
+                }
+            });
+        });
+
+        // Script para resaltar el link activo en el menú según el scroll
+        const sections = document.querySelectorAll('section');
+        const navLinks = document.querySelectorAll('.nav-links a');
+
+        window.addEventListener('scroll', () => {
+            let current = '';
+            
+            sections.forEach(section => {
+                const sectionTop = section.offsetTop;
+                const sectionHeight = section.clientHeight;
+                if (pageYOffset >= (sectionTop - 200)) {
+                    current = section.getAttribute('id');
+                }
+            });
+
+            navLinks.forEach(link => {
+                link.classList.remove('active');
+                if (link.getAttribute('href') === `#${current}`) {
+                    link.classList.add('active');
+                }
+            });
+        });
+
+        // Funciones para abrir y cerrar certificados
+        function openCertificate(certId) {
+            const modal = document.getElementById(certId);
+            if (modal) {
+                modal.classList.add('active');
+                document.body.style.overflow = 'hidden'; // Prevenir scroll del body
+            }
+        }
+
+        function closeCertificate(certId) {
+            const modal = document.getElementById(certId);
+            if (modal) {
+                modal.classList.remove('active');
+                document.body.style.overflow = ''; // Restaurar scroll del body
+            }
+        }
+
+        // Cerrar modal al hacer click fuera del certificado
+        document.querySelectorAll('.certificate-modal').forEach(modal => {
+            modal.addEventListener('click', function(e) {
+                if (e.target === this) {
+                    closeCertificate(this.id);
+                }
+            });
+        });
+
+        // Cerrar modal con la tecla ESC
+        document.addEventListener('keydown', function(e) {
+            if (e.key === 'Escape') {
+                document.querySelectorAll('.certificate-modal.active').forEach(modal => {
+                    closeCertificate(modal.id);
+                });
+            }
+        });
+    </script>
+</body>
+</html>
